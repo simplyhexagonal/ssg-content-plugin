@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+MODULE_NAME=ssgContentPlugin
+GLOBAL_NAME=ssgContentPlugin
+
+rm -rf dist/*
+esbuild src/index.ts --bundle \
+  --external:typescript \
+  --platform=node \
+  --outfile=dist/$MODULE_NAME.js --sourcemap --global-name=$GLOBAL_NAME \
+  && tsc -d --emitDeclarationOnly --rootDir src --outDir dist \
+  && mv dist/index.d.ts dist/$MODULE_NAME.d.ts \
+  && refup dist/$MODULE_NAME.js $GLOBAL_NAME --no-default \
+  || exit 1
