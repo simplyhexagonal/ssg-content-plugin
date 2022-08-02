@@ -2,5 +2,5 @@
 
 pnpm build \
   && git add dist \
-  && git commit -m "chore: build dist for release" \
+  && git commit --allow-empty -m "chore: build dist for release" \
   && auto-changelog -p
