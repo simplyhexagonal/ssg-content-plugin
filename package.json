@@ -2,7 +2,8 @@
   "name": "ssg-content-plugin",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/ssgContentPlugin.js",
+  "typings": "dist/ssgContentPlugin.d.ts",
   "files": [
     "dist",
     "src",
