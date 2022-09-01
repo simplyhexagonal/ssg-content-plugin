@@ -2377,8 +2377,14 @@ var ssgContentPlugin = async () => {
       const pageName = pathParts[pathParts.length - 2];
       const content = contentCollection[pageName];
       let modifiedCode = code;
-      modifiedCode = modifiedCode.replace(/import\s+content\s+from\s+['"]\.\/content['"];/g, "");
-      modifiedCode = modifiedCode.replace(/(await\s+){0,1}content\(\)/g, JSON.stringify(content));
+      modifiedCode = modifiedCode.replace(
+        /import\s+(\{\s{0,}){0,1}content(\s{0,}\}){0,1}\s+from\s+['"]\.{1,2}\/(\.\.\/){0,}(common\/){0,1}content(\.ts){0,1}['"];/g,
+        ""
+      );
+      modifiedCode = modifiedCode.replace(
+        /(await\s+){0,1}content\(\)/g,
+        JSON.stringify(content)
+      );
       return {
         code: modifiedCode,
         map: null
