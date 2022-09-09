@@ -65,12 +65,7 @@ const ssgContentPlugin = async () => {
 
       modifiedCode = modifiedCode.replace(
         /import\s+(\{\s{0,}){0,1}content(\s{0,}\}){0,1}\s+from\s+['"]\.{1,2}\/(\.\.\/){0,}(common\/){0,1}content(\.ts){0,1}['"];/g,
-        '',
-      );
-
-      modifiedCode = modifiedCode.replace(
-        /(await\s+){0,1}content\(\)/g,
-        JSON.stringify(content)
+        `const content = async () => ${JSON.stringify(content)};`,
       );
 
       return {
